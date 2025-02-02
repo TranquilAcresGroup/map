@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=534, height=1329, initial-scale=1.0, user-scalable=no">
+    <style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 534px; /* Set fixed width */
+    height: 100vh; /* Use viewport height for full-screen effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 534px; /* Maintain original width */
+    height: 1329px; /* Prevent scaling */
+}
+        .tooltip {
+            position: absolute;
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            display: none;
+            font-size: 14px;
+            white-space: pre-line;
+            width: 100px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .tooltip h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid white;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://drive.google.com/thumbnail?id=1mILrECPN6IcoB-ehZ_KUS5_IDgeaPdhA&sz=w1329" alt="Land Lots" usemap="#lotsmap" id="mapImage">
+    <div class="tooltip" id="tooltip"></div>
+    
+    <map name="lotsmap">
+        
+        <area shape="poly" coords="142,272,208,278,211,219,197,176,204,107,160,102,148,145" alt="Lot 1" title="" data-tooltip="Lot 1
+~
+1.5 acres
+AVAILABLE">
+        <area shape="poly" coords="142,275,207,280,200,387,106,379,111,301,139,304" alt="Lot 2" title="" data-tooltip="Lot 2">
+        <area shape="poly" coords="107,382,200,391,191,491,98,485" alt="Lot 3" title="" data-tooltip="Lot 3">
+        <area shape="poly" coords="99,487,190,491,194,581,89,585" alt="Lot 4" title="" data-tooltip="Lot 4">
+        <area shape="poly" coords="89,588,195,582,199,666,82,672" alt="Lot 5" title="" data-tooltip="Lot 5">
+        <area shape="poly" coords="82,677,200,669,203,744,75,750" alt="Lot 6" title="" data-tooltip="Lot 6">
+        <area shape="poly" coords="74,753,205,746,207,820,66,820" alt="Lot 7" title="" data-tooltip="Lot 7">
+        <area shape="poly" coords="224,675,359,699,342,792,230,771" alt="Lot 8" title="" data-tooltip="Lot 8">
+        <area shape="poly" coords="359,604,498,628,489,713,342,687" alt="Lot 10" title="" data-tooltip="Lot 10">
+        <area shape="poly" coords="219,578,356,603,342,678,224,658" alt="Lot 11" title="" data-tooltip="Lot 11">
+        <area shape="poly" coords="371,528,358,593,219,568,216,500" alt="Lot 12" title="" data-tooltip="Lot 12">
+        <area shape="poly" coords="503,552,498,624,359,601,371,529" alt="Lot 13" title="" data-tooltip="Lot 13">
+    </map>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tooltip = document.getElementById("tooltip");
+            document.querySelectorAll("area").forEach(area => {
+                area.addEventListener("mouseover", function(event) {
+                    tooltip.style.display = "block";
+                    tooltip.innerText = this.dataset.tooltip;
+                });
+                area.addEventListener("mousemove", function(event) {
+                    tooltip.style.left = event.pageX + 10 + "px";
+                    tooltip.style.top = event.pageY + 10 + "px";
+                });
+                area.addEventListener("mouseout", function() {
+                    tooltip.style.display = "none";
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
